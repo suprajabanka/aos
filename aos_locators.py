@@ -22,7 +22,7 @@ account_test_data = {'usernameRegisterPage': username, 'emailRegisterPage': emai
              'confirm_passwordRegisterPage': password, 'first_nameRegisterPage': first_name, 'last_nameRegisterPage': last_name,
              'phone_numberRegisterPage': phone, 'cityRegisterPage': city, 'addressRegisterPage': address,
              'state_/_province_/_regionRegisterPage': province, 'postal_codeRegisterPage': postal_code}
-# ----------------------------------------------------------
+
 
 
 
