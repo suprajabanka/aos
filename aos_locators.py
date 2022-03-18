@@ -18,7 +18,7 @@ state = fake.province_abbr()
 postal_code = fake.postalcode()
 new_username = f'{first_name}{last_name}'.lower()
 new_password = fake.password
-description = f'User added by {user_name} via Python Selenium Automated Script'  # fake.sentence(nb_words=100)
+description = f'User added by {user_name} via Python Selenium Automated Script'  
 
 # --------------------------- Data Definitions -----------------------------------
 account_test_data = {'usernameRegisterPage': user_name, 'emailRegisterPage': email, 'passwordRegisterPage': password,

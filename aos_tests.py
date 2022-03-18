@@ -12,7 +12,7 @@ class aoswebsitePositiveTestCases (unittest.TestCase):
         methods.validate_contact_us()
         methods.validate_follow_us_links()
         methods.log_in()
-        methods.log_out()
+        methods.delete_user()
         methods.tear_Down()
 
 

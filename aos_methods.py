@@ -120,13 +120,33 @@ def log_in():
     sleep(0.25)
     print('Successfully logged in')
 
-def log_out():
-    driver.find_element(By.ID, 'hrefUserIcon').click()
+def delete_user():
+    driver.find_element(By.LINK_TEXT, locators.user_name).click()
+    sleep(1)
+    driver.find_element(By.XPATH, '//a/div/label[contains(.,"My orders")]').click()
     sleep(0.25)
-    driver.find_element(By.XPATH, '//a/div/label[contains(.,"Sign out")]').click()
+    assert driver.find_element(By.XPATH, '//div/label[contains(.,"No orders")]').is_displayed()
     sleep(0.25)
-    if driver.current_url == 'https://advantageonlineshopping.com/#/':
-        print(f'Logout Successful! at {datetime.datetime.now()}')
+    print(f'No Orders Displayed ')
+    driver.find_element(By.LINK_TEXT, locators.user_name).click()
+    sleep(0.25)
+    driver.find_element(By.XPATH, '//a/div/label[contains(.,"My account")]').click()
+    assert driver.find_element(By.XPATH, f'//*[contains(.,"{locators.user_name}")]').is_displayed()
+    driver.find_element(By.CLASS_NAME, 'deleteBtnText').click()
+    sleep(2)
+    driver.find_element(By.XPATH, '//div[@class="deletePopupBtn deleteRed"]').click()
+    print(f'Account has been deleted.')
+    sleep(3)
+    driver.find_element(By.ID, 'menuUser').click()
+    sleep(1)
+    driver.find_element(By.NAME, 'username').send_keys(locators.user_name)
+    driver.find_element(By.NAME, 'password').send_keys(locators.password)
+    sleep(0.25)
+    driver.find_element(By.ID, 'sign_in_btnundefined').click()
+    sleep(2)
+    driver.find_element(By.ID, 'signInResultMessage').is_displayed()
+    print(f'Incorrect user name or password.')
+
 
 
 def tear_Down():
