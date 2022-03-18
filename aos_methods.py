@@ -10,23 +10,20 @@ from selenium.webdriver.support.ui import Select
 s = Service(executable_path='c:\\Users\\ramak\\PycharmProjects\\pythonProject\\chromedriver.exe')
 driver = webdriver.Chrome(service=s)
 
-def setup():
+def setUp():
     print(f'launch {locators.website} Home Page')
+    driver.maximize_window()
+    driver.implicitly_wait(30)
+    driver.get('https://advantageonlineshopping.com/#/')
+    sleep(10)
 
-driver.maximize_window()
-driver.implicitly_wait(30)
-
-
-driver.get('https://advantageonlineshopping.com/#/')
-sleep(10)
-
-if driver.current_url == locators.advantage_url and driver.title == locators.advantage_title:
-   print(f"Amazing! advantageonlineshopping website launched successfully")
-   print(f"AOS Home Page URL: {driver.current_url}\nHome Page Title: {driver.title}")
-   sleep(10)
-else:
-   print(f"AOS website didn't launch. Check your code or application!")
-   print(f"Current URL: {driver.current_url}\nHome Page Title: {driver.title}")
+    if driver.current_url == locators.advantage_url and driver.title == locators.advantage_title:
+       print(f"Amazing! advantageonlineshopping website launched successfully")
+       print(f"AOS Home Page URL: {driver.current_url}\nHome Page Title: {driver.title}")
+       sleep(10)
+    else:
+       print(f"AOS website didn't launch. Check your code or application!")
+       print(f"Current URL: {driver.current_url}\nHome Page Title: {driver.title}")
 
 def create_new_account():
     sleep(10)
@@ -110,19 +107,18 @@ def validate_follow_us_links():
             sleep(2)
 
 
-def log_in(user_name, password):
+def log_in():
     print('---- Login with new user --------')
     sleep(1)
     driver.find_element(By.ID, 'hrefUserIcon').click()
     sleep(1)
-    driver.find_element(By.NAME, 'username').send_keys(user_name)
+    driver.find_element(By.NAME, 'username').send_keys(locators.user_name)
     sleep(1)
-    driver.find_element(By.NAME, 'password').send_keys(password)
+    driver.find_element(By.NAME, 'password').send_keys(locators.password)
     sleep(1)
     driver.find_element(By.ID, 'sign_in_btnundefined').click()
     sleep(0.25)
     print('Successfully logged in')
-
 
 def log_out():
     driver.find_element(By.ID, 'hrefUserIcon').click()
@@ -132,19 +128,13 @@ def log_out():
     if driver.current_url == 'https://advantageonlineshopping.com/#/':
         print(f'Logout Successful! at {datetime.datetime.now()}')
 
-def tear_down():
+
+def tear_Down():
 
     if driver is not None:
         print(f"The test is completed")
         driver.close()
         driver.quit()
 
-setup()
-create_new_account()
-sign_out()
-validate_homepage_texts()
-validate_contact_us()
-validate_follow_us_links()
-log_in(locators.user_name, locators.password)
-log_out()
-tear_down()
+
+
